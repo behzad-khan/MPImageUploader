@@ -5,7 +5,7 @@
     return dt.files;
   }
 
-  class ImageUploader {
+  class MPImageUploader {
     constructor(selector, options = {}) {
       this.opt = Object.assign(
         {
@@ -137,5 +137,5 @@
     }
   }
 
-  window.ImageUploader = ImageUploader;
+  window.ImageUploader = MPImageUploader;
 })();
