@@ -137,5 +137,5 @@
     }
   }
 
-  window.ImageUploader = MPImageUploader;
+  window.MPImageUploader = MPImageUploader;
 })();
