@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>پلاگین انتخاب و پیش‌نمایش تصویر</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="MPImageUploader.css" />
+  </head>
+  <body>
+    <main style="max-width: 900px; margin: 0 auto; padding: 20px">
+      <h2 style="margin: 8px 0 16px">پلاگین سفارشی انتخاب و پیش‌نمایش تصویر</h2>
+
+      <!-- تنها چیزی که لازم دارید: یک input ساده -->
+      <input id="productImage" type="file" accept="image/*" />
+
+      <div style="margin-top: 14px">
+        <button
+          type="button"
+          onclick="alert('این پلاگین فقط انتخاب/نمایش تصویر برای input را انجام می‌دهد. آپلود با سرور وظیفه شماست.')"
+        >
+          تست ارسال
+        </button>
+      </div>
+    </main>
+
+    <script src="MPImageUploader.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        new ImageUploader("#productImage", {
+          // در صورت ویرایش می‌توانید مسیر تصویر قبلی را بدهید:
+          // existingImage: '/uploads/sample.jpg'
+        });
+      });
+    </script>
+  </body>
+</html>
