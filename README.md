@@ -1,10 +1,12 @@
 # MPImageUploader
 
+🌍 Languages: [فارسی](./README.fa.md)
 **MPImageUploader** is a lightweight JavaScript plugin that enables users to upload images with:
-- ✅ Drag & Drop support  
-- ✅ Image preview  
-- ✅ Add button  
-- ✅ Delete button  
+
+- ✅ Drag & Drop support
+- ✅ Image preview
+- ✅ Add button
+- ✅ Delete button
 - ✅ Support for loading an existing image (Edit Mode)
 
 It’s a simple, dependency-free plugin designed for fast integration into any web project.
@@ -12,10 +14,11 @@ It’s a simple, dependency-free plugin designed for fast integration into any w
 ---
 
 ## ✅ Features
-- Drag & Drop image upload  
-- Preview selected image  
-- Add button to select files manually  
-- Delete button to remove the selected image  
+
+- Drag & Drop image upload
+- Preview selected image
+- Add button to select files manually
+- Delete button to remove the selected image
 - Load a pre-existing image when editing (via `existingImage` option)
 
 ---
@@ -36,4 +39,4 @@ Include the plugin files directly using `<link>` and `<script>` tags:
     //existingImage: "/uploads/user-image.jpg" // existing image path
   });
 </script>
-
+```
