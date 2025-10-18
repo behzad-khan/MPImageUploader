@@ -1,5 +1,7 @@
 # MPImageUploader
 
+👨‍💻 Developed by **Mehrdad Pakniat (مهرداد پاک‌نیت)**
+
 🌍 Languages: [فارسی](./README.fa.md)
 **MPImageUploader** is a lightweight JavaScript plugin that enables users to upload images with:
 

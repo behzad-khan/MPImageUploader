@@ -1,3 +1,9 @@
+/*!
+ * MP ImageUploader v1.0.0
+ * (c) 2025 Mehrdad Pakniat (مهرداد پاک‌نیت)
+ * License: MIT
+ * GitHub: https://github.com/behzad-khan/MPImageUploader
+ */
 (function () {
   function fileListFromFiles(files) {
     const dt = new DataTransfer();
@@ -139,3 +145,8 @@
 
   window.MPImageUploader = MPImageUploader;
 })();
+
+console.log(
+  "%cMP ImageUploader v1.0.0 - Developed by Mehrdad Pakniat (مهرداد پاک‌نیت)",
+  "color: #1e90ff; font-weight: bold;"
+);

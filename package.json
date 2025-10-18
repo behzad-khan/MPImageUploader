@@ -2,17 +2,20 @@
   "name": "mpimageuploader",
   "version": "1.0.0",
   "main": "MP-ImageUploader.js",
+  "description": "A lightweight JavaScript plugin for drag & drop image uploading with preview and delete. Developed by Mehrdad Pakniat (مهرداد پاک‌نیت).",
+  "author": "Mehrdad Pakniat (مهرداد پاک‌نیت)",
   "scripts": {
     "build:js": "terser src/MP-ImageUploader.js -o dist/MP-ImageUploader.min.js",
     "build:css": "csso src/MP-ImageUploader.css -o dist/MP-ImageUploader.min.css",
-    "build": "npm run build:js && npm run build:css"
+    "brand": "node scripts/addBranding.js",
+    "build": "npm run brand && npm run build:js && npm run build:css"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/behzad-khan/MPImageUploader.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mehrdad Pakniayt",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/behzad-khan/MPImageUploader/issues"
