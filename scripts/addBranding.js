@@ -16,7 +16,7 @@ const path = require("path");
 // اطلاعات برندینگ
 const BRAND_NAME_EN = "Mehrdad Pakniat";
 const BRAND_NAME_FA = "مهرداد پاک‌نیت";
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 const GITHUB_URL = "https://github.com/behzad-khan/MPImageUploader";
 const YEAR = new Date().getFullYear();
 

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MP ImageUploader – Lightweight JavaScript Image Upload Plugin</title>
+    <meta
+      name="description"
+      content="MP ImageUploader is a lightweight JavaScript plugin for image upload with preview, drag & drop, add and delete functionality. Available on NPM and GitHub."
+    />
+    <meta
+      name="keywords"
+      content="JavaScript, Image Uploader, Plugin, MPImageUploader, NPM, GitHub"
+    />
+
+    <!-- OpenGraph for social sharing -->
+    <meta
+      property="og:title"
+      content="MP ImageUploader – Lightweight JavaScript Image Upload Plugin"
+    />
+    <meta
+      property="og:description"
+      content="Lightweight JS plugin for image upload with preview, drag & drop, add and delete."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://github.com/behzad-khan/MPImageUploader"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/behzad-khan/MPImageUploader/main/demo/screenshot.png"
+    />
+
+    <!-- CSS from jsDelivr -->
+    <link rel="stylesheet" href="../src/MP-ImageUploader.css" />
+
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #f8f9fa;
+        padding: 2rem;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+      }
+      .author {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.9rem;
+      }
+      #preview {
+        margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>MP ImageUploader</h1>
+      <p>
+        A lightweight JavaScript plugin for image upload with preview, drag &
+        drop, add and delete functionality.
+      </p>
+
+      <input type="file" id="imageInput" />
+      <div id="preview"></div>
+
+      <hr />
+
+      <p>
+        📦
+        <a
+          href="https://www.npmjs.com/package/@mehpak/mp-imageuploader"
+          target="_blank"
+          >View on NPM</a
+        >
+        | 💻
+        <a href="https://github.com/behzad-khan/MPImageUploader" target="_blank"
+          >View on GitHub</a
+        >
+      </p>
+
+      <div class="author">
+        Developed by
+        <a href="https://mehpak.ir/plugins/mp-imageuploader" target="_blank"
+          >MehPak</a
+        >
+      </div>
+    </div>
+
+    <!-- JS from jsDelivr -->
+    <script src="../src/MP-ImageUploader.js"></script>
+    <script>
+      // Initialize plugin
+      const uploader = new MPImageUploader("#imageInput", {
+        preview: "#preview",
+      });
+    </script>
+  </body>
+</html>

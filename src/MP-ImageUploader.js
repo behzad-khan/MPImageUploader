@@ -1,6 +1,6 @@
 /*!
  * MP ImageUploader v1.0.0
- * (c) 2025 Mehrdad Pakniat (مهرداد پاک‌نیت)
+ * (c) 2025 Mehrdad Pakniat
  * License: MIT
  * GitHub: https://github.com/behzad-khan/MPImageUploader
  */
@@ -13,20 +13,60 @@
 
   class MPImageUploader {
     constructor(selector, options = {}) {
+      this.selector = selector;
       this.opt = Object.assign(
         {
           existingImage: null,
-          emptyText: "تصویر انتخاب نشده",
+          lang: "en",
+          texts: null, // امکان override دستی
         },
         options
       );
 
-      if (typeof selector === "string")
-        this.inputs = Array.from(document.querySelectorAll(selector));
-      else if (selector instanceof HTMLElement) this.inputs = [selector];
-      else this.inputs = [];
+      // JSON پیش‌فرض داخلی
+      this.defaultTexts = {
+        messages: {
+          emptyText: "No image selected",
+          metaText: "Click on the box to choose an image or drop a file here.",
+        },
+        buttons: {
+          choose: { label: "Choose Image", aria: "Choose Image" },
+          clear: { label: "Delete Image", aria: "Delete Image" },
+        },
+        image: { previewAlt: "Image preview" },
+      };
 
-      this.inputs
+      this._loadLanguage().then(() => {
+        this._initInputs();
+      });
+    }
+
+    async _loadLanguage() {
+      if (this.opt.texts) {
+        this.texts = this.opt.texts;
+      } else {
+        try {
+          const response = await fetch(`../lang/${this.opt.lang}.json`);
+          if (!response.ok) throw new Error("Language file not found");
+          this.texts = await response.json();
+        } catch (err) {
+          console.warn(
+            "Failed to load language file, using default texts:",
+            err
+          );
+          this.texts = this.defaultTexts; // fallback داخلی
+        }
+      }
+    }
+
+    _initInputs() {
+      let inputs;
+      if (typeof this.selector === "string")
+        inputs = Array.from(document.querySelectorAll(this.selector));
+      else if (this.selector instanceof HTMLElement) inputs = [this.selector];
+      else inputs = [];
+
+      inputs
         .filter((inp) => inp && inp.type === "file")
         .forEach((inp) => this._enhance(inp));
     }
@@ -42,31 +82,33 @@
 
       const empty = document.createElement("div");
       empty.className = "mp-iu-empty";
+
       const emptyText = document.createElement("div");
       emptyText.className = "mp-iu-empty-text";
-      emptyText.textContent = this.opt.emptyText;
+      emptyText.textContent = this.texts.messages.emptyText;
       empty.appendChild(emptyText);
 
       const img = document.createElement("img");
       img.className = "mp-iu-img";
-      img.alt = "پیش‌نمایش تصویر";
+      img.alt = this.texts.image.previewAlt;
 
       const btnChoose = document.createElement("button");
       btnChoose.type = "button";
       btnChoose.className = "mp-iu-btn mp-iu-btn-choose";
-      btnChoose.title = "انتخاب تصویر";
-      btnChoose.setAttribute("aria-label", "انتخاب تصویر");
+      //btnChoose.textContent = this.texts.buttons.choose.label;
+      btnChoose.title = this.texts.buttons.choose.aria;
+      btnChoose.setAttribute("aria-label", this.texts.buttons.choose.aria);
 
       const btnClear = document.createElement("button");
       btnClear.type = "button";
       btnClear.className = "mp-iu-btn mp-iu-btn-clear";
-      btnClear.title = "حذف تصویر";
-      btnClear.setAttribute("aria-label", "حذف تصویر");
+      //btnClear.textContent = this.texts.buttons.clear.label;
+      btnClear.title = this.texts.buttons.clear.aria;
+      btnClear.setAttribute("aria-label", this.texts.buttons.clear.aria);
 
       const meta = document.createElement("div");
       meta.className = "mp-iu-meta";
-      meta.innerHTML =
-        "<span>برای انتخاب تصویر روی باکس کلیک کنید یا فایل را در همین بخش رها کنید.</span>";
+      meta.innerHTML = `<span>${this.texts.messages.metaText}</span>`;
 
       box.appendChild(empty);
       box.appendChild(img);
@@ -80,6 +122,7 @@
         this._setPreview(img, this.opt.existingImage, root);
       }
 
+      // click روی box
       box.addEventListener("click", (e) => {
         if (e.target === btnChoose || e.target === btnClear) return;
         input.click();
@@ -144,9 +187,9 @@
   }
 
   window.MPImageUploader = MPImageUploader;
-})();
 
-console.log(
-  "%cMP ImageUploader v1.0.0 - Developed by Mehrdad Pakniat (مهرداد پاک‌نیت)",
-  "color: #1e90ff; font-weight: bold;"
-);
+  console.log(
+    "%cMP ImageUploader v1.0.0 - Developed by Mehrdad Pakniat",
+    "color: #1e90ff; font-weight: bold;"
+  );
+})();
