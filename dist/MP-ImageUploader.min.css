@@ -1,5 +1,5 @@
 /*!
- * MP ImageUploader v1.1.0
+ * MP ImageUploader v1.1.1
  * (c) 2025 Mehrdad Pakniat (مهرداد پاک‌نیت)
  * License: MIT
  * GitHub: https://github.com/behzad-khan/MPImageUploader

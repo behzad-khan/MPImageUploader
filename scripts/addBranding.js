@@ -1,22 +1,30 @@
 /*!
-
-* This script automatically adds or updates branding information
-* including header in JS/CSS files, developer info in README files,
-* and copyright in LICENSE. It ensures your name appears in all
-* important project files.
-*
-* این اسکریپت به‌صورت خودکار اطلاعات برندینگ را اضافه یا به‌روز می‌کند،
-* شامل هدر در فایل‌های JS/CSS، اطلاعات توسعه‌دهنده در README و
-* حق نشر در LICENSE. با این کار نام شما در تمام فایل‌های مهم پروژه
-* درج می‌شود.
-  */
+ * This script automatically adds or updates branding information
+ * including header in JS/CSS files, developer info in README files,
+ * and copyright in LICENSE. It ensures your name appears in all
+ * important project files.
+ *
+ * این اسکریپت به‌صورت خودکار اطلاعات برندینگ را اضافه یا به‌روز می‌کند،
+ * شامل هدر در فایل‌های JS/CSS، اطلاعات توسعه‌دهنده در README و
+ * حق نشر در LICENSE. با این کار نام شما در تمام فایل‌های مهم پروژه
+ * درج می‌شود.
+ */
 const fs = require("fs");
 const path = require("path");
+
+// خواندن شماره نسخه از package.json
+const packageJsonPath = path.join(__dirname, "..", "package.json");
+let VERSION = "0.0.0";
+try {
+  const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+  VERSION = pkg.version || VERSION;
+} catch (err) {
+  console.warn(`⚠️ Could not read version from package.json: ${err.message}`);
+}
 
 // اطلاعات برندینگ
 const BRAND_NAME_EN = "Mehrdad Pakniat";
 const BRAND_NAME_FA = "مهرداد پاک‌نیت";
-const VERSION = "1.1.0";
 const GITHUB_URL = "https://github.com/behzad-khan/MPImageUploader";
 const YEAR = new Date().getFullYear();
 
@@ -49,7 +57,6 @@ console.log(
         ? content.replace(/\/\*![\s\S]*?\*\//, header.trim())
         : header + "\n" + content;
 
-      // اگر consoleBranding قبلاً وجود ندارد، اضافه کن
       if (!content.includes("Developed by")) {
         content += consoleBranding;
       }
