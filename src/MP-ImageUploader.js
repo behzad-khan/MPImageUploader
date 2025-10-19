@@ -46,7 +46,7 @@
         this.texts = this.opt.texts;
       } else {
         try {
-          const response = await fetch(`../lang/${this.opt.lang}.json`);
+          const response = await fetch(`./lang/${this.opt.lang}.json`);
           if (!response.ok) throw new Error("Language file not found");
           this.texts = await response.json();
         } catch (err) {
