@@ -17,7 +17,7 @@
       this.opt = Object.assign(
         {
           existingImage: null,
-          lang: "en",
+          multilingual: { lang: "en" }, // ← جدید
           texts: null, // امکان override دستی
         },
         options
@@ -44,9 +44,22 @@
     async _loadLanguage() {
       if (this.opt.texts) {
         this.texts = this.opt.texts;
+      } else if (this.opt.multilingual && this.opt.multilingual.url) {
+        try {
+          const response = await fetch(this.opt.multilingual.url);
+          if (!response.ok) throw new Error("Language file not found");
+          this.texts = await response.json();
+        } catch (err) {
+          console.warn(
+            "Failed to load JSON from multilingual.url, using default texts:",
+            err
+          );
+          this.texts = this.defaultTexts;
+        }
       } else {
         try {
-          const response = await fetch(`./lang/${this.opt.lang}.json`);
+          const lang = this.opt.multilingual?.lang || "en";
+          const response = await fetch(`../lang/${lang}.json`);
           if (!response.ok) throw new Error("Language file not found");
           this.texts = await response.json();
         } catch (err) {
@@ -95,14 +108,12 @@
       const btnChoose = document.createElement("button");
       btnChoose.type = "button";
       btnChoose.className = "mp-iu-btn mp-iu-btn-choose";
-      //btnChoose.textContent = this.texts.buttons.choose.label;
       btnChoose.title = this.texts.buttons.choose.aria;
       btnChoose.setAttribute("aria-label", this.texts.buttons.choose.aria);
 
       const btnClear = document.createElement("button");
       btnClear.type = "button";
       btnClear.className = "mp-iu-btn mp-iu-btn-clear";
-      //btnClear.textContent = this.texts.buttons.clear.label;
       btnClear.title = this.texts.buttons.clear.aria;
       btnClear.setAttribute("aria-label", this.texts.buttons.clear.aria);
 
@@ -122,7 +133,6 @@
         this._setPreview(img, this.opt.existingImage, root);
       }
 
-      // click روی box
       box.addEventListener("click", (e) => {
         if (e.target === btnChoose || e.target === btnClear) return;
         input.click();
@@ -189,7 +199,7 @@
   window.MPImageUploader = MPImageUploader;
 
   console.log(
-    "%cMP ImageUploader v1.0.0 - Developed by Mehrdad Pakniat",
+    "%cMP ImageUploader v1.1.1 - Developed by Mehrdad Pakniat",
     "color: #1e90ff; font-weight: bold;"
   );
 })();

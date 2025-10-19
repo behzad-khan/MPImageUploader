@@ -1,0 +1,19 @@
+{
+  "messages": {
+    "emptyText": "No image selected",
+    "metaText": "Click on the box to choose an image or drop a file here."
+  },
+  "buttons": {
+    "choose": {
+      "label": "Choose Image",
+      "aria": "Choose Image"
+    },
+    "clear": {
+      "label": "Delete Image",
+      "aria": "Delete Image"
+    }
+  },
+  "image": {
+    "previewAlt": "Image preview"
+  }
+}
