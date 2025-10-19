@@ -3,6 +3,12 @@
 👨‍💻 Developed by **Mehrdad Pakniat (مهرداد پاک‌نیت)**
 
 🌍 Languages: [فارسی](./README.fa.md)
+
+## Demo
+
+You can try MP ImageUploader live on GitHub Pages:
+
+🌐 [View Demo](https://behzad-khan.github.io/MPImageUploader/)
 **MPImageUploader** is a lightweight JavaScript plugin that enables users to upload images with:
 
 - ✅ Drag & Drop support
